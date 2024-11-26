@@ -12,8 +12,8 @@ Este es un proyecto de e-commerce desarrollado con Django, que incluye funcional
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/emrecoskun705/e_commerce.git
-cd e_commerce
+git https://github.com/EliazarNoaLlas/e_commerce_RestAPI-.git
+cd e_commerce_RestAPI-
 ```
 
 ### 2.1 Crear Entorno Virtual con Anaconda
