@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load image_template_tags %}
+{% block content %}
+{% if orders %}
+
+<div class="row mt-3">
+  <div class="col-md-4">
+    <div class="list-group" id="list-tab" role="tablist">
+    {% for order in orders %}
+      <a class="list-group-item list-group-item-action" id="list-{{order.ref_code}}-list" data-toggle="list" href="#list-{{order.ref_code}}" role="tab" aria-controls="home">
+       <strong>{{order.ref_code}}</strong> 
+      </a>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="tab-content" id="nav-tabContent">
+      {% for order in orders %}
+        <div class="tab-pane fade show" id="list-{{order.ref_code}}" role="tabpanel" aria-labelledby="list-{{order.ref_code}}-list">
+            <div class="row">
+              <div class="col-8">
+                <p class="pt-4"><strong class="pl-2">Order Date: {{order.order_date}}</strong></p>
+              </div>
+              <div class="col-4">
+                <a href="{% url 'core:refund' order.ref_code %}" class="btn btn-primary">Refund Request</a>
+              </div>
+            </div>
+            
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Product Image</th>         
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Product Price</th>
+                  <th scope="col">Quantity</th>         
+                </tr>
+              </thead>
+              <tbody id="cartTable">
+                {% for orderProduct in order.items.all %}
+                <tr>
+                  <td style="text-align: center" ><img width="{% handle_width orderProduct.product.image 60 %}" height="60px" src="{{orderProduct.product.image.url}}" alt="asd"></td>
+                  <td>
+                    <a href="{{ orderProduct.product.get_absolute_url }}">{{orderProduct.product.title}}</a>
+                  </td>
+                  <td>{{orderProduct.product.price}}$</td>
+                  <td>{{orderProduct.quantity}}</td>
+                </tr> 
+                {% endfor %}                       
+              </tbody>           
+            </table>
+            {% if order.coupon %}
+            
+            <h4 class="pl-2"><strong>Total Price: <del>${{order.get_total_order_price_without_coupon}}</del> ${{order.get_total_order_price}}</strong></h4>
+            {% else %}
+              <h4 class="pl-2"><strong>Total Price: ${{order.get_total_order_price}}</strong></h4>
+            {% endif %}
+            
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% else %}
+<!-- Empty order list  -->
+<div class="container-fluid mt-100">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="card-header">
+                  <h5>Orders</h5>
+              </div>
+              <div class="card-body cart">
+                  <div class="col-sm-12 empty-cart-cls text-center"><i class="fas fa-shopping-cart fa-5x"></i>
+                      <h3><strong>No orders</strong></h3>
+                      <h4>You don't have any compleated orders</h4> <a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock content %}

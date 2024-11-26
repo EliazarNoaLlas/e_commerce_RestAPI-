@@ -1,0 +1,82 @@
+  {% load cart_template_tags %}
+  {% load static %}
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="{% url 'core:home' %}">
+        <strong class="blue-text">Welcome</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <!--<ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-effect" href="{% url 'core:home' %}">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>-->
+
+        <form method="GET" action="{% url 'core:search' %}" class="form-inline my-2 my-lg-0 ml-auto mr-auto">
+          
+          <input name="search" type="search" id="form1" class="form-control" placeholder="Search" style="width: 400px"/>
+          
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i class="fas fa-search" ></i>
+          </button>
+          
+        </form>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a href="{% url 'core:cart' %}" class="nav-link waves-effect">
+              <span class="badge red z-depth-1 mr-1"> {{ request.user|product_count_user }} </span>
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+          {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-alt"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="{% url 'core:order-list' %}">Orders</a>
+                <a class="dropdown-item" href="{% url 'core:refund-list' %}">Refunds</a>
+                <a class="dropdown-item" href="{% url 'account_logout' %}">
+                  Logout<i class="fas fa-sign-out-alt pl-3"></i>
+                </a>
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="{% url 'account_login' %}">
+                <span class="clearfix d-sm-inline-block"> Login </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+                <span class="clearfix d-sm-inline-block"> Signup </span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->

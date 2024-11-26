@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load image_template_tags %}
+{% block extra_navbar %}
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3">
+
+    
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">All
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        {% for category in categories %}
+          <li class="nav-item">
+            <a class="nav-link" href="/search/?category={{category.slug}}">{{category.name}}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <!-- Links -->
+
+    </div>
+    <!-- Collapsible content -->
+
+  </nav>
+  <!--/.Navbar-->
+{% endblock extra_navbar %}
+
+{% block content %}
+<style type="text/css">
+  html,
+  body,
+  header,
+  .carousel {
+    height: 60vh;
+  }
+
+  @media (max-width: 740px) {
+
+    html,
+    body,
+    header,
+    .carousel {
+      height: 100vh;
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 850px) {
+
+    html,
+    body,
+    header,
+    .carousel {
+      height: 100vh;
+    }
+  }
+
+</style>
+  
+
+
+  <!--Carousel-->
+  {% include "includes/carousel.html" %}
+  <!--/.Carousel-->
+
+  <!--Section: Products v.3-->
+  <section class="text-center mb-4 mt-3">
+
+    <!--Grid row-->
+    <div class="row wow fadeIn" >
+    
+      {% for item in object_list %}
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!--Card image-->
+            <div class="view overlay">
+              <a href="{{ item.get_absolute_url }}">
+                <img src="{{ item.image.url }}" class="card-img-top text-center mx-auto"
+                  alt="" style=" width: {% handle_width item.image 200 %}px; height: 200px" >
+              </a>
+              
+            </div>
+            <!--Card image-->
+
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              <a href="{{ item.get_absolute_url }}" class="grey-text">
+                <h5>{{ item.category }}</h5>
+              </a>
+              <h5>
+                <strong>
+                  <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title|truncatechars:30 }}
+                    <span class="badge badge-pill danger-color">NEW</span>
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>{{ item.price }}$</strong>
+              </h4>
+
+            </div>
+            <!--Card content-->
+
+          </div>
+          <!--Card-->
+
+        </div>
+        <!--Grid column-->
+      {% endfor %}
+    </div>
+    <!--Grid row-->
+
+  </section>
+  <!--Section: Products v.3-->
+
+  <!--Pagination-->
+  {% if is_paginated %}
+    <nav class="d-flex justify-content-center wow fadeIn">
+      <ul class="pagination pg-blue">
+        {% if page_obj.has_previous  %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+        {% endif %}
+        <!--Arrow left-->
+
+
+        <li class="page-item active">
+          <a class="page-link" href="?page={{page_obj.number}}">{{page_obj.number}}
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
+  
+  <!--Pagination-->
+
+{% endblock content %}
