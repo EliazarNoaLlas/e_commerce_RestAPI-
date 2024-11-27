@@ -151,18 +151,23 @@ To test and complete the order, stripe webhook must be working.
 
 First, install [Stripe CLI]
 Then run this command
-```sh
+```bash
 stripe listen --forward-to localhost:8000/webhooks/stripe/
 ```
 
 
+### ENLACES PARA LA INSTLACION DE LAS LIBRERIAS
 
+Python: https://www.python.org/downloads/release/python-376/
 
-   [Python]: https://www.python.org/downloads/release/python-376/
-   [Django]: https://www.djangoproject.com/download/
-   [Template]: https://mdbootstrap.com/freebies/jquery/e-commerce/
-   [Stripe CLI]: https://stripe.com/docs/stripe-cli#install
-   [Stripe]: https://stripe.com/
-   [Google API]: https://developers.google.com/identity/protocols/oauth2
+ Django: https://www.djangoproject.com/download/
+Template: https://mdbootstrap.com/freebies/jquery/e-commerce/
 
+Stripe CLI: https://stripe.com/docs/stripe-cli#install
+   
+Stripe: https://stripe.com/
+   
+Google API: https://developers.google.com/identity/protocols/oauth2
+
+### ENLACE DE LA DEMOSTRACION DEL REST API
 https://user-images.githubusercontent.com/57330864/127233277-4d24491b-aec0-4d94-86e5-f7883843eafa.mp4
