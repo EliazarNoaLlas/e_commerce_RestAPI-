@@ -49,12 +49,15 @@ pip install -r requirements.txt
 
 Ejemplo de configuración de `.env`:
 ```
-SECRET_KEY=tu_clave_secreta
+SECRET_KEY=kVMp1O3zzdAB4g0ZIOHOgNevSz9HUZ0w0QUfDuKRGMXHfenToNDjg41vjzXDNePG5bQ
 DEBUG=True
-STRIPE_SECRET_KEY=tu_stripe_secret_key
-STRIPE_PUBLIC_KEY=tu_stripe_public_key
-GOOGLE_CLIENT_ID=tu_google_client_id
-GOOGLE_CLIENT_SECRET=tu_google_client_secret
+STRIPE_TEST_PUBLIC_KEY=pk_test_51QP5rLDalEHjdVHvAyVJ9txZWLFwXq2xMCDSI1IZkkMDjoQzXm6vG7zgzUohQUbUUtZxpGSHxpmuZdKcSsUlF1Hj00WfipNhxY
+STRIPE_TEST_SECRET_KEY=sk_test_51QP5rLDalEHjdVHvwF9PDfoW3ZfWo1i6cl1OPl7jeYjgNAY1pCaAmZS0ARHSwVYlAEQjXQRRg0CAwIJ8siNGftft007lzPPXoC
+STRIPE_WEBHOOK_SECRET_KEY=
+DB_NAME=my_ecommerce_db
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
 ```
 
 #### Rellenar las variables
