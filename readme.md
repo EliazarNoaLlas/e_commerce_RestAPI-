@@ -74,6 +74,7 @@ Completa cada clave con los valores apropiados. Aquí hay una descripción de lo
 Indica si el servidor está en modo de desarrollo (True) o producción (False).
 Durante el desarrollo, deja DEBUG=True.
 - **STRIPE_SECRET_KEY** y **STRIPE_PUBLIC_KEY**
+- https://dashboard.stripe.com/
 Estas son claves de API para integrar Stripe en tu proyecto.
 Ve a tu cuenta de Stripe y obtén las claves desde la sección API Keys.
 Copia la clave secreta en STRIPE_SECRET_KEY y la clave pública en STRIPE_PUBLIC_KEY.
@@ -154,7 +155,7 @@ stripe listen --forward-to localhost:8000/webhooks/stripe/
 
 
 
-   [Python]: https://www.python.org/downloads/release/python-370/
+   [Python]: https://www.python.org/downloads/release/python-376/
    [Django]: https://www.djangoproject.com/download/
    [Template]: https://mdbootstrap.com/freebies/jquery/e-commerce/
    [Stripe CLI]: https://stripe.com/docs/stripe-cli#install
